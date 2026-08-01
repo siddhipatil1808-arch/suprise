@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary: #FFB6C1;       /* Soft Pink */
+  --secondary: #C8A2C8;     /* Lavender */
+  --accent: #FFD700;        /* Gold */
+  --accent-rgb: 255, 215, 0;
+  --bg-gradient: linear-gradient(135deg, #FFF0F2 0%, #F6EAF7 50%, #E8F0FE 100%);
+  --text-main: #4A3B4E;      /* Dark Lavender-Grey for readability */
+  --text-muted: #7E6C84;
+  --glass-bg: rgba(255, 255, 255, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 8px 32px 0 rgba(200, 162, 200, 0.15);
+  
+  --font-heading: 'Fredoka', cursive, sans-serif;
+  --font-body: 'Poppins', sans-serif;
+  --font-letter: 'Dancing Script', cursive, serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-main);
+  background: var(--bg-gradient);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 240, 242, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b58eb5;
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes floatSlow {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(3deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes floatMedium {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-25px) rotate(-5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.float-medium {
+  animation: floatMedium 4s ease-in-out infinite;
+}
+
+/* Glassmorphism utility */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 20px;
+}
+
+/* Glowing text and boxes */
+.glow-gold {
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+.glow-pink {
+  text-shadow: 0 0 10px rgba(255, 182, 193, 0.6);
+}
+
+/* Interactive elements */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.btn-ripple:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(200, 162, 200, 0.3);
+}
+
+.btn-ripple:active {
+  transform: scale(0.98);
+}
+
+/* Page wrapper to support routing transitions */
+.page-container {
+  min-height: calc(100vh - 140px);
+  padding: 100px 20px 40px 20px; /* Offset for sticky navbar */
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Card flip styling */
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
